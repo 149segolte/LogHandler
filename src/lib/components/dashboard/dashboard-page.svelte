@@ -3,8 +3,6 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Overview, Logs } from '.';
-	import AvatarFallback from '../ui/avatar/avatar-fallback.svelte';
-	import { getAllContexts } from 'svelte';
 </script>
 
 <div>

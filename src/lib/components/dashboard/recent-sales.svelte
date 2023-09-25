@@ -1,76 +1,21 @@
-<script lang="ts">
+<script>
 	import * as Table from '$lib/components/ui/table';
+	import { onMount } from 'svelte';
 
-	const logs = [
-		{
-			time: '2023-09-24T08:18:33.274150Z',
-			level: 'INFO',
-			headers: {
-				host: 'flowing-teal-terribly.ngrok-free.app',
-				'user-agent': 'PostmanRuntime/7.33.0',
-				'content-length': '68',
-				accept: '*/*',
-				'accept-encoding': 'gzip, deflate, br',
-				'cache-control': 'no-cache',
-				'content-type': 'application/json',
-				'postman-token': '8c4d1268-6e8c-4f60-afb4-0cc0375ff0b5',
-				'x-forwarded-for': '54.86.50.139',
-				'x-forwarded-proto': 'https'
-			},
-			log: { button: 4, message: 'testing', type: 'c++' }
-		},
-		{
-			time: '2023-09-24T08:18:33.274150Z',
-			level: 'INFO',
-			headers: {
-				host: 'flowing-teal-terribly.ngrok-free.app',
-				'user-agent': 'PostmanRuntime/7.33.0',
-				'content-length': '68',
-				accept: '*/*',
-				'accept-encoding': 'gzip, deflate, br',
-				'cache-control': 'no-cache',
-				'content-type': 'application/json',
-				'postman-token': '8c4d1268-6e8c-4f60-afb4-0cc0375ff0b5',
-				'x-forwarded-for': '54.86.50.139',
-				'x-forwarded-proto': 'https'
-			},
-			log: { button: 4, message: 'testing', type: 'c++' }
-		},
-		{
-			time: '2023-09-24T08:18:33.274150Z',
-			level: 'DEBUG',
-			headers: {
-				host: 'flowing-teal-terribly.ngrok-free.app',
-				'user-agent': 'PostmanRuntime/7.33.0',
-				'content-length': '68',
-				accept: '*/*',
-				'accept-encoding': 'gzip, deflate, br',
-				'cache-control': 'no-cache',
-				'content-type': 'application/json',
-				'postman-token': '8c4d1268-6e8c-4f60-afb4-0cc0375ff0b5',
-				'x-forwarded-for': '54.86.50.139',
-				'x-forwarded-proto': 'https'
-			},
-			log: { button: 4, message: 'testing', type: 'c++' }
-		},
-		{
-			time: '2023-09-24T08:18:33.274150Z',
-			level: 'ERROR',
-			headers: {
-				host: 'flowing-teal-terribly.ngrok-free.app',
-				'user-agent': 'PostmanRuntime/7.33.0',
-				'content-length': '68',
-				accept: '*/*',
-				'accept-encoding': 'gzip, deflate, br',
-				'cache-control': 'no-cache',
-				'content-type': 'application/json',
-				'postman-token': '8c4d1268-6e8c-4f60-afb4-0cc0375ff0b5',
-				'x-forwarded-for': '54.86.50.139',
-				'x-forwarded-proto': 'https'
-			},
-			log: { button: 4, message: 'testing', type: 'c++' }
-		}
-	];
+	const url = 'https://flowing-teal-terribly.ngrok-free.app';
+
+	let logs = [];
+
+	onMount(() => {
+		const interval = setInterval(async () => {
+			let res = await fetch(`${url}/log`);
+			const data = await res.json();
+			console.log(data);
+			logs = data.logs;
+		}, 5000);
+
+		return () => clearInterval(interval);
+	});
 </script>
 
 <Table.Root>
@@ -103,4 +48,3 @@
 		{/each}
 	</Table.Body>
 </Table.Root>
-
