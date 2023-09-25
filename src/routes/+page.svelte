@@ -1,2 +1,11 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { DashboardPage } from '$lib/components/dashboard';
+	import { onMount } from 'svelte';
+	import nav from '$lib/nav';
+
+	onMount(() => {
+		$nav = 'overview';
+	});
+</script>
+
+<DashboardPage />
