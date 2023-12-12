@@ -1,9 +1,8 @@
 <script>
 	import '../app.postcss';
-	import nav from '$lib/nav';
 	import { Bell, GanttChart } from 'lucide-svelte';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import { DashboardMainNav, UserNav } from '$lib/components/dashboard';
+	import { MainNav, UserNav } from '$lib/components/nav';
 </script>
 
 <div class="flex flex-col w-full h-full">
@@ -14,7 +13,7 @@
 					<span class="text-xl font-bold">LogHandler</span>
 				</div>
 			</div>
-			<DashboardMainNav bind:active={$nav} />
+			<MainNav />
 			<div class="ml-auto flex items-center space-x-4">
 				<DropdownMenu.Root positioning={{ placement: 'bottom-end' }}>
 					<DropdownMenu.Trigger><Bell size="20" /></DropdownMenu.Trigger>
